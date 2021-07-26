@@ -115,6 +115,20 @@ app.get("/statement/date", (req, res) => {
   return res.json(statement);
 });
 
+app.put("/account", (req, res) => {
+  const { customer } = req;
+  const { name } = req.body;
+
+  customer.name = name;
+
+  return res.status(200).send();
+});
+
+app.get("/account", (req, res) => {
+  const { customer } = req;
+
+  return res.json(customer);
+})
 
 
 app.listen(3333);
