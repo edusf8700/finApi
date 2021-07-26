@@ -100,6 +100,21 @@ app.post("/withdraw", (req, res) => {
 
   return res.status(201).send();
 
-})
+});
+
+app.get("/statement/date", (req, res) => {
+  const { customer } = req;
+  const { date } = req.query;
+
+  const formatDate = new Date(date+ " 00:00");
+
+  const statement = customer.statement.filter((statement) => 
+    statement.createdAt.toDateString() === new Date(formatDate).toDateString()
+  )
+
+  return res.json(statement);
+});
+
+
 
 app.listen(3333);
